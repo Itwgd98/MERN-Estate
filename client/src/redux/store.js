@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> bed2e5e9d950598e9f45175f83ed407444ed0bbe
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
 import { persistReducer, persistStore } from 'redux-persist';
