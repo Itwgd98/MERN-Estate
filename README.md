@@ -1,19 +1,23 @@
 MERN-Estate 🏡
 
-MERN-Estate is a full-stack real estate web application built with MongoDB, Express, React (Vite), and Node.js. It allows users to browse, list, and manage property listings through a modern, responsive UI and a robust backend API.
+MERN-Estate is a full-stack real estate web application built using MongoDB, Express, React (Vite), and Node.js. The platform allows users to browse, list, and manage properties through a fast, responsive, and modern interface.
+
+🔗 Live Website:
+https://gagan-mern-estate.onrender.com/
 
 📌 Table of Contents
 
 Features
+
+Live Demo
 
 Tech Stack
 
 Project Structure
 
 Getting Started
-• Prerequisites
-• Installation
-• Environment Variables
+
+Environment Variables
 
 Usage
 
@@ -29,19 +33,24 @@ Contact
 
 🚀 Features
 
-Property listings with images and details
+Browse all property listings
 
 Add, edit, delete property listings
 
-Fully responsive UI for all devices
+Fully responsive UI
 
-Filter and search properties
+Search and filter functionality
 
-RESTful backend API
+REST API backend
 
-User authentication (if implemented)
+Modern UX with clean design
 
-Clean folder structure for scalability
+Authentication ready (if implemented)
+
+🌐 Live Demo
+
+Production Deployment:
+https://gagan-mern-estate.onrender.com/
 
 🧰 Tech Stack
 
@@ -53,13 +62,13 @@ Tools: ESLint, npm
 📁 Project Structure
 MERN-Estate/
 │
-├── api/                # Backend  
+├── api/                 # Backend  
 │   ├── controllers/  
 │   ├── models/  
 │   ├── routes/  
 │   └── ...
 │
-├── src/                # Frontend  
+├── src/                 # Frontend  
 │   ├── components/  
 │   ├── pages/  
 │   └── ...
@@ -75,9 +84,9 @@ MERN-Estate/
 
 Node.js
 
-npm or yarn
+npm or Yarn
 
-MongoDB (local or cloud)
+MongoDB
 
 ✔ Installation
 
@@ -87,22 +96,22 @@ git clone https://github.com/Itwgd98/MERN-Estate.git
 cd MERN-Estate
 
 
-Install backend dependencies:
+Backend installation:
 
 cd api
 npm install
 
 
-Install frontend dependencies:
+Frontend installation:
 
 cd ../src
 npm install
 
 🔐 Environment Variables
 
-Create a .env file inside api folder:
+Create a .env file inside api:
 
-MONGODB_URI=your-mongodb-url
+MONGODB_URI=your-mongo-url
 PORT=5000
 JWT_SECRET=your-secret-key
 
@@ -120,48 +129,50 @@ cd ../src
 npm run dev
 
 
-Open the browser:
+Open:
 
 http://localhost:5173
 
-📡 API Endpoints (Examples)
+📡 API Endpoints
 Method	Route	Description
 GET	/api/properties	Get all properties
-GET	/api/properties/:id	Get single property
+GET	/api/properties/:id	Get one property
 POST	/api/properties	Create property
 PUT	/api/properties/:id	Update property
 DELETE	/api/properties/:id	Delete property
 🤝 Contributing
 
-Fork the repo
+Fork repository
 
-Create a branch
+Create a new branch
 
-Commit changes
+Commit your changes
 
-Push
+Push branch
 
-Open a pull request
+Submit pull request
 
 🧭 Roadmap
 
-User authentication
+Authentication
 
-Image uploads
+Image upload
 
 Map integration
 
 Admin dashboard
 
-Real-time chat
+Deployment automation
 
-Deployment scripts
+Messaging between users
 
 📄 License
 
-Licensed under the MIT License.
+MIT License
 
 📬 Contact
 
 Author: Gagan
+Live App: https://gagan-mern-estate.onrender.com/
+
 GitHub: https://github.com/Itwgd98
