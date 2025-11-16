@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
@@ -17,9 +16,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar:{
+    avatar: {
       type: String,
-      default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+      default:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
     },
   },
   { timestamps: true }
@@ -28,34 +28,3 @@ const userSchema = new mongoose.Schema(
 const User = mongoose.model('User', userSchema);
 
 export default User;
-=======
-import mongoose from 'mongoose';
-
-const userSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    avatar:{
-      type: String,
-      default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-    },
-  },
-  { timestamps: true }
-);
-
-const User = mongoose.model('User', userSchema);
-
-export default User;
->>>>>>> bed2e5e9d950598e9f45175f83ed407444ed0bbe
