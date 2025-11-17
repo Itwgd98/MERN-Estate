@@ -27,10 +27,14 @@ mongoose
 // ------------------------
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://gagan-mern-estate.onrender.com"
+    ],
     credentials: true,
   })
 );
+
 
 // ------------------------
 // UTILS & MIDDLEWARES
