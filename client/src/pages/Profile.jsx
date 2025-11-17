@@ -24,6 +24,7 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
 
+  // Upload to CLOUDINARY (not Firebase)
   useEffect(() => {
     if (file) uploadImageToCloudinary(file);
   }, [file]);
@@ -34,7 +35,7 @@ export default function Profile() {
 
     try {
       const data = new FormData();
-      data.append("file", file);
+      data.append("images", file); // IMPORTANT FIX
 
       const res = await fetch("/api/upload-images", {
         method: "POST",
@@ -43,7 +44,7 @@ export default function Profile() {
 
       const result = await res.json();
 
-      if (!res.ok) {
+      if (!res.ok || !result.success) {
         setFileUploadError(true);
         return;
       }
@@ -74,7 +75,8 @@ export default function Profile() {
       });
 
       const data = await res.json();
-      if (data.success === false) return dispatch(updateUserFailure(data.message));
+      if (data.success === false)
+        return dispatch(updateUserFailure(data.message));
 
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
@@ -89,8 +91,8 @@ export default function Profile() {
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
-
       const data = await res.json();
+
       if (data.success === false) return dispatch(deleteUserFailure(data.message));
 
       dispatch(deleteUserSuccess(data));
