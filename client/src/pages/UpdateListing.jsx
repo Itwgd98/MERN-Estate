@@ -35,7 +35,7 @@ export default function UpdateListing() {
     const fetchListing = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/listing/get/${params.listingId}`
+          `/api/listing/get/${params.listingId}`
         );
         const data = await res.json();
 
@@ -82,7 +82,7 @@ export default function UpdateListing() {
         const data = new FormData();
         data.append("images", files[i]);
 
-        const res = await fetch("http://localhost:3000/api/upload-images", {
+        const res = await fetch("/api/upload-images", {
           method: "POST",
           body: data,
         });
@@ -141,7 +141,7 @@ export default function UpdateListing() {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/listing/update/${params.listingId}`,
+        `/api/listing/update/${params.listingId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

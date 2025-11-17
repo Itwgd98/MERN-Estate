@@ -49,7 +49,7 @@ export default function CreateListing() {
         const data = new FormData();
         data.append("images", files[i]); // MUST MATCH multer field
 
-        const res = await fetch("http://localhost:3000/api/upload-images", {
+        const res = await fetch("/api/upload-images", {
           method: "POST",
           body: data,
         });
@@ -106,7 +106,7 @@ export default function CreateListing() {
     setError(false);
 
     try {
-      const res = await fetch("http://localhost:3000/api/listing/create", {
+      const res = await fetch("/api/listing/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

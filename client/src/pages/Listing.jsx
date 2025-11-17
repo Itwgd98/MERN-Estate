@@ -35,7 +35,7 @@ export default function Listing() {
         setLoading(true);
 
         const res = await fetch(
-          `http://localhost:3000/api/listing/get/${listingId}`,
+          `/api/listing/get/${listingId}`,
           { credentials: "include" }
         );
 
