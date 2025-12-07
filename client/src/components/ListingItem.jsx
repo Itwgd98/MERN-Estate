@@ -31,7 +31,14 @@ export default function ListingItem({ listing }) {
             {listing.offer
               ? listing.discountPrice.toLocaleString('en-US')
               : listing.regularPrice.toLocaleString('en-US')}
-            {listing.type === 'rent' && ' / month'}
+            {listing.rent && !listing.sell && ' / month'}
+          </p>
+          <p className='text-xs text-green-700 font-semibold'>
+            {listing.sell && listing.rent
+              ? 'For Sale & Rent'
+              : listing.sell
+                ? 'For Sale'
+                : 'For Rent'}
           </p>
           <div className='text-slate-700 flex gap-4'>
             <div className='font-bold text-xs'>

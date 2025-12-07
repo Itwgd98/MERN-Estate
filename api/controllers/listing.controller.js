@@ -16,7 +16,8 @@ export const createListing = async (req, res, next) => {
       bedrooms,
       furnished,
       parking,
-      type,
+      sell,
+      rent,
       offer,
       imageUrls,
       userRef,
@@ -25,6 +26,11 @@ export const createListing = async (req, res, next) => {
     // Validate images
     if (!imageUrls || imageUrls.length === 0) {
       return next(errorHandler(400, "At least one image is required."));
+    }
+
+    // Validate at least one of sell or rent is selected
+    if (!sell && !rent) {
+      return next(errorHandler(400, "Please select at least Sell or Rent."));
     }
 
     // Create listing
@@ -38,7 +44,8 @@ export const createListing = async (req, res, next) => {
       bedrooms,
       furnished,
       parking,
-      type,
+      sell,
+      rent,
       offer,
       imageUrls, // Cloudinary URLs only
       userRef,
@@ -136,10 +143,18 @@ export const getListings = async (req, res, next) => {
       parking = { $in: [false, true] };
     }
 
-    let type = req.query.type;
-    if (type === undefined || type === "all") {
-      type = { $in: ["sale", "rent"] };
+    // Build filter based on type parameter
+    // 'all' = show all listings (sell or rent or both)
+    // 'sale' = show only listings with sell=true
+    // 'rent' = show only listings with rent=true
+    let typeFilter = {};
+    const type = req.query.type;
+    if (type === "sale") {
+      typeFilter = { sell: true };
+    } else if (type === "rent") {
+      typeFilter = { rent: true };
     }
+    // For 'all' or undefined, no type filter is applied
 
     const searchTerm = req.query.searchTerm || "";
     const sort = req.query.sort || "createdAt";
@@ -150,7 +165,7 @@ export const getListings = async (req, res, next) => {
       offer,
       furnished,
       parking,
-      type,
+      ...typeFilter,
     })
       .sort({ [sort]: order })
       .limit(limit)

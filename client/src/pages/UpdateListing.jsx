@@ -13,7 +13,8 @@ export default function UpdateListing() {
     name: "",
     description: "",
     address: "",
-    type: "rent",
+    sell: false,
+    rent: false,
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 50,
@@ -49,7 +50,8 @@ export default function UpdateListing() {
           name: data.name || "",
           description: data.description || "",
           address: data.address || "",
-          type: data.type || "rent",
+          sell: data.sell || false,
+          rent: data.rent || false,
           bedrooms: data.bedrooms || 1,
           bathrooms: data.bathrooms || 1,
           regularPrice: data.regularPrice || 50,
@@ -116,8 +118,10 @@ export default function UpdateListing() {
   // INPUT CHANGE HANDLER
   // -------------------------------
   const handleChange = (e) => {
-    if (["sale", "rent"].includes(e.target.id))
-      return setFormData({ ...formData, type: e.target.id });
+    // Handle sell and rent as independent boolean checkboxes
+    if (e.target.id === "sell" || e.target.id === "rent") {
+      return setFormData({ ...formData, [e.target.id]: e.target.checked });
+    }
 
     if (["parking", "offer", "furnished"].includes(e.target.id))
       return setFormData({ ...formData, [e.target.id]: e.target.checked });
@@ -130,6 +134,9 @@ export default function UpdateListing() {
   // -------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.sell && !formData.rent)
+      return setError("Please select at least Sell or Rent.");
 
     if (formData.imageUrls.length < 1)
       return setError("Upload at least 1 image");
@@ -207,8 +214,8 @@ export default function UpdateListing() {
             <label>
               <input
                 type="checkbox"
-                id="sale"
-                checked={formData.type === "sale"}
+                id="sell"
+                checked={formData.sell}
                 onChange={handleChange}
               />
               Sell
@@ -218,7 +225,7 @@ export default function UpdateListing() {
               <input
                 type="checkbox"
                 id="rent"
-                checked={formData.type === "rent"}
+                checked={formData.rent}
                 onChange={handleChange}
               />
               Rent

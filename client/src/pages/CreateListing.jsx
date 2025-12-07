@@ -12,7 +12,8 @@ export default function CreateListing() {
     name: "",
     description: "",
     address: "",
-    type: "rent",
+    sell: false,
+    rent: false,
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 50,
@@ -78,8 +79,9 @@ export default function CreateListing() {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === "sale" || e.target.id === "rent") {
-      setFormData({ ...formData, type: e.target.id });
+    // Handle sell and rent as independent boolean checkboxes
+    if (e.target.id === "sell" || e.target.id === "rent") {
+      setFormData({ ...formData, [e.target.id]: e.target.checked });
     }
 
     if (["parking", "furnished", "offer"].includes(e.target.id)) {
@@ -93,6 +95,10 @@ export default function CreateListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.sell && !formData.rent) {
+      return setError("Please select at least Sell or Rent.");
+    }
 
     if (formData.imageUrls.length < 1) {
       return setError("Please upload at least one image.");
@@ -168,12 +174,22 @@ export default function CreateListing() {
 
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-              <input type="checkbox" id="sale" onChange={handleChange} />
+              <input
+                type="checkbox"
+                id="sell"
+                checked={formData.sell}
+                onChange={handleChange}
+              />
               <span>Sell</span>
             </div>
 
             <div className="flex gap-2">
-              <input type="checkbox" id="rent" checked onChange={handleChange} />
+              <input
+                type="checkbox"
+                id="rent"
+                checked={formData.rent}
+                onChange={handleChange}
+              />
               <span>Rent</span>
             </div>
 
